@@ -12,7 +12,9 @@ def main(input_file: Path) -> None:
         pairs = [split_to_ints(line) for line in f.readlines()]
     s1, s2 = (sorted(lst) for lst in zip(*pairs))
     sum_of_diffs = sum(abs(i1 - i2) for i1, i2 in zip(s1, s2))
-    print(sum_of_diffs)
+    similarity_score = sum(item * s2.count(item) for item in s1)
+    print(f"Sum: {sum_of_diffs}")
+    print(f"Similarity score: {similarity_score}")
 
 
 if __name__ == "__main__":
